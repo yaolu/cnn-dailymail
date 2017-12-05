@@ -193,6 +193,8 @@ def write_to_bin(url_file, out_file, makevocab=False):
         art_tokens = article.split(' ')
         abs_tokens = abstract.split(' ')
         abs_tokens = [t for t in abs_tokens if t not in [SENTENCE_START, SENTENCE_END]] # remove these tags from vocab
+        abs_tokens = [t for t in abs_tokens if '@entity' not in t]
+        art_tokens = [t for t in art_tokens if '@entity' not in t]
         tokens = art_tokens + abs_tokens
         tokens = [t.strip() for t in tokens] # strip
         tokens = [t for t in tokens if t!=""] # remove empty
